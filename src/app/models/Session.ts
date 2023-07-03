@@ -31,7 +31,14 @@ export default class Session {
    * findOne
    */
   public static async findOne(id: string) {
-    const session = A.find(Session.database, (session) => session.id === id)
+    return Session.findBy("id", id)
+  }
+
+  /**
+   * findBy
+   */
+  public static async findBy<T extends keyof SessionDB>(field: T, value: SessionDB[T]) {
+    const session = A.find(Session.database, (session) => session[field] === value)
     if (G.isNullable(session)) return undefined
     return new Session(session)
   }

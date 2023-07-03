@@ -86,6 +86,7 @@ Because i love <font color="pink">Express ♡</font>, i write a small context pr
 {
     static findAll: () => Promise<Model[]>// get all records
     static findOne: (id: string) => Promise<Model>// get one record by id
+    static findBy: <T extends keyof ModelData>(field: T, value: ModelData[T]) => Promise<Model>// get one record by field
     create: (data: ModelData) => Promise<Model>// create a new model from  data on database
     merge: (data: Partial<ModelData>) => Promise<void>// merge partial data with model
     save: () => Promise<void> // save model on database

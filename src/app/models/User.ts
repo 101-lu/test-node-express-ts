@@ -4,6 +4,7 @@ import bcrypt from "bcrypt"
 import { InternalServerException } from "../exceptions/InternalServerException"
 import { config } from "~/config"
 import usersDatabase from "../database/users"
+import { UserDB } from "~/type"
 
 /**
  * User model
@@ -33,7 +34,14 @@ export default class User {
    * findOne
    */
   public static async findOne(id: string) {
-    const user = A.find(User.database, (user) => user.id === id)
+    return User.findBy("id", id)
+  }
+
+  /**
+   * findBy
+   */
+  public static async findBy<T extends keyof UserDB>(field: T, value: UserDB[T]) {
+    const user = A.find(User.database, (user) => user[field] === value)
     if (G.isNullable(user)) return undefined
     return new User(user)
   }
@@ -102,11 +110,4 @@ export default class User {
   public async comparePassword(password: string) {
     return bcrypt.hashSync(password, config.appKey) === this.password
   }
-}
-
-type UserDB = {
-  id: string
-  username: string
-  email: string
-  password: string
 }
