@@ -2,14 +2,11 @@ import { A, D, G } from "@mobily/ts-belt"
 import { v4 as uuid } from "uuid"
 import { InternalServerException } from "../exceptions/InternalServerException"
 import JWTtoken from "~/helpers/JWTtoken"
+import sessionDatabase from "../database/session"
+import { SessionDB } from "~/type"
 
 /**
- * database
- */
-const sessionDatabase: readonly SessionDB[] = []
-
-/**
- * user model
+ * Session model
  */
 export default class Session {
   protected static database = sessionDatabase
@@ -92,10 +89,4 @@ export default class Session {
       }
     })
   }
-}
-
-type SessionDB = {
-  id: string
-  userId: string
-  token: string
 }

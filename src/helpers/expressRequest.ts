@@ -37,5 +37,6 @@ const generateContext = (request: express.Request, response: express.Response, n
     notAllowed: (json?: Record<string, any>) => response.status(405).json(json ?? {}),
     original: response,
   },
+  next,
 })
 export type Context = ReturnType<typeof generateContext>

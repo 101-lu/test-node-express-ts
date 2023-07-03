@@ -7,7 +7,7 @@ import signInValidator from "~/app/validators/signIn"
 import { A, G, D, S } from "@mobily/ts-belt"
 
 /**
- * Todo: Logic to signIn, signOut and check if session is valid
+ * Todo: Logic to signIn, signOut and check if a session is valid
  * each required files are allready imported
  * a bridge on express has been created everything is typed and explicitly documented
  * a fake database and ORM is available with crud operation: fineAll, findOne and
