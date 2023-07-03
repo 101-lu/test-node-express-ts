@@ -93,6 +93,7 @@ export default class User {
         this[key] = user[key] as string
       }
     })
+    return this
   }
 
   /**

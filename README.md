@@ -78,6 +78,24 @@ Because i love <font color="pink">Express ♡</font>, i write a small context pr
     original: express.Response,
   },
   next: express.NextFunction
-
 })
+```
+
+### ORM
+```typescript
+{
+    static findAll: () => Promise<Model[]>// get all records
+    static findOne: (id: string) => Promise<Model>// get one record by id
+    create: (data: ModelData) => Promise<Model>// create a new model from  data on database
+    merge: (data: Partial<ModelData>) => Promise<void>// merge partial data with model
+    save: () => Promise<void> // save model on database
+    delete: () => Promise<void> // delete model on database
+    json: () => ModelData // serialize model
+}
+
+// example code
+const myUser = await findOne('my-super-uui')
+await myUser.merge({name: 'Max'}).save()
+return myUser.json()
+await myUser.delete()
 ```
